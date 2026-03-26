@@ -42,7 +42,15 @@ jobs:
           name: model_info
           path: .
 
-      # DEBUG STEP 
+      # correct mlruns folder structure
+      - name: Fix mlruns path
+        run: |
+          if [ -d "mlruns/mlruns" ]; then
+            mv mlruns/mlruns/* mlruns/
+            rm -r mlruns/mlruns
+          fi
+
+      # Debug (keep it, it's helpful)
       - name: List files
         run: ls -R
 
@@ -51,5 +59,4 @@ jobs:
 
       - name: Mock Docker Build
         run: |
-          echo "Building Docker image"
-          cat model_info.txt
+          echo "Building Docker image for Run ID: $(cat model_info.txt)"
