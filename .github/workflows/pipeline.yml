@@ -41,6 +41,10 @@ jobs:
         with:
           name: model_info
 
+      # DEBUG STEP 
+      - name: List files
+        run: ls -R
+
       - name: Check accuracy
         run: python check_threshold.py
 
