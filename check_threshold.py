@@ -2,7 +2,7 @@ import mlflow
 import os
 import sys
 
-mlflow.set_tracking_uri(os.environ.get("MLFLOW_TRACKING_URI"))
+mlflow.set_tracking_uri("file:./mlruns")
 
 with open("model_info.txt", "r") as f:
     run_id = f.read().strip()
