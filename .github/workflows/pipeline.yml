@@ -23,6 +23,7 @@ jobs:
           name: model_info
           path: |
             model_info.txt
+            accuracy.txt
             mlruns
 
   deploy:
@@ -42,7 +43,7 @@ jobs:
           name: model_info
           path: .
 
-      # correct mlruns folder structure
+      # nested mlruns issue
       - name: Fix mlruns path
         run: |
           if [ -d "mlruns/mlruns" ]; then
@@ -50,7 +51,7 @@ jobs:
             rm -r mlruns/mlruns
           fi
 
-      # Debug (keep it, it's helpful)
+      # Debug
       - name: List files
         run: ls -R
 
