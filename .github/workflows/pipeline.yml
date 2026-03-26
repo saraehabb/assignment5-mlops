@@ -1,13 +1,15 @@
 name: ML Pipeline
 
-on: [push]
+on:
+  push:
 
 jobs:
   validate:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout
+        uses: actions/checkout@v4
 
       - name: Install dependencies
         run: pip install mlflow scikit-learn
@@ -15,7 +17,7 @@ jobs:
       - name: Train model
         run: python train.py
 
-      - name: Upload model info
+      - name: Upload artifact
         uses: actions/upload-artifact@v4
         with:
           name: model_info
@@ -26,7 +28,8 @@ jobs:
     needs: validate
 
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout
+        uses: actions/checkout@v4
 
       - name: Install dependencies
         run: pip install mlflow
