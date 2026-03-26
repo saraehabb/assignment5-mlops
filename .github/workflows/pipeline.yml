@@ -23,7 +23,7 @@ jobs:
           name: model_info
           path: |
             model_info.txt
-            accuracy.txt
+            mlruns
 
   deploy:
     runs-on: ubuntu-latest
@@ -48,4 +48,3 @@ jobs:
         run: |
           echo "Building Docker image"
           cat model_info.txt
-          cat accuracy.txt
